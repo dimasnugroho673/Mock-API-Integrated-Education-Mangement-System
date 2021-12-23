@@ -32,6 +32,14 @@ class UserSeeder extends Seeder
                 "password" => bcrypt("123456"),
                 'api_token' => "mfbAazWfjgJeqNqIBlRTTQ==",
             ],
+            [
+                "userID" => "170155201013",
+                "name" => "Sulthan SHP",
+                "email" => "sulthan.shp.13@gmail.com",
+                "nim" => "170155201031",
+                "password" => bcrypt("123456"),
+                'api_token' => "REbdazWfjgJeyrtIBlRTTQ",
+            ],
         ]);
     }
 }

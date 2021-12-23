@@ -21,8 +21,8 @@ class CreateCourseLecturesEnroll extends Migration
             $table->char('idSession', 36);
             $table->boolean('isPrimaryLecture');
             $table->longText('lectureDescriptions')->nullable();
-            $table->timestamp('createdAt', 0)->nullable();
-            $table->timestamp('updatedAt', 0)->nullable();
+            $table->timestamp('createdAt', 0)->nullable()->useCurrent();
+            $table->timestamp('updatedAt', 0)->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

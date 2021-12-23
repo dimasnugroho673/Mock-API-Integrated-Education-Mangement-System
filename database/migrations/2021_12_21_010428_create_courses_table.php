@@ -26,8 +26,8 @@ class CreateCoursesTable extends Migration
             $table->string('idDepartment');
             $table->string('idCourseGradeComponents')->nullable();
             $table->string('idAcademicYear');
-            $table->timestamp('createdAt', 0)->nullable();
-            $table->timestamp('updatedAt', 0)->nullable();
+            $table->timestamp('createdAt', 0)->nullable()->useCurrent();
+            $table->timestamp('updatedAt', 0)->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

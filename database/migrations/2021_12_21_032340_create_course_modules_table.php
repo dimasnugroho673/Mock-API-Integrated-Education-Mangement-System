@@ -21,8 +21,8 @@ class CreateCourseModulesTable extends Migration
             $table->string('moduleTitle');
             $table->string('moduleType');
             $table->boolean('isActive');
-            $table->timestamp('createdAt', 0)->nullable();
-            $table->timestamp('updatedAt', 0)->nullable();
+            $table->timestamp('createdAt', 0)->nullable()->useCurrent();
+            $table->timestamp('updatedAt', 0)->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

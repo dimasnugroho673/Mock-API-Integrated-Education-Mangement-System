@@ -19,13 +19,13 @@ class CreateCourseUsersEnroll extends Migration
             $table->char('idUser', 36);
             $table->char('idCourse', 36);
             $table->char('idSession', 36);
-            $table->boolean('isComplete')->default(false);  
+            $table->boolean('isComplete')->default(false);
             $table->string('coursePoints')->nullable();
             $table->string('courseGrade', 1)->nullable();
             $table->string('courseQuality')->nullable();
             $table->float('courseFinalScore', 8, 2)->nullable();
-            $table->timestamp('createdAt', 0)->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updatedAt', 0)->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('createdAt', 0)->nullable();
+            $table->timestamp('updatedAt', 0)->nullable();
         });
     }
 

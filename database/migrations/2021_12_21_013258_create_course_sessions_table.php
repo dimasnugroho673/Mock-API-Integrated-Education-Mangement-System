@@ -16,7 +16,6 @@ class CreateCourseSessionsTable extends Migration
         Schema::create('course_sessions', function (Blueprint $table) {
             $table->uuid('courseSessionID')->primary()->unique();
             $table->string('idCourse');
-            $table->string('idLecture');
             $table->string('idRoom');
             $table->string('courseSchedule');
             $table->string('courseScheduleStart');

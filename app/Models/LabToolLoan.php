@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class LabToolLoan extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
     protected $guarded = [];
 
-    public function faculty()
+    public function tool()
     {
-        return $this->belongsTo(Faculty::class, 'idFaculty', 'id');
+        return $this->hasOne(LabTool::class, 'id', 'idLabTool');
     }
 }

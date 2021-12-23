@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class LibBookLoan extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
     protected $guarded = [];
 
-    public function faculty()
+    public function book()
     {
-        return $this->belongsTo(Faculty::class, 'idFaculty', 'id');
+        return $this->hasOne(LibBook::class, 'id', 'idLibBook');
     }
 }

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         User::insert([
             [
-                "id" => "170155201005",
+                "userID" => "170155201005",
                 "name" => "Dimas Nugroho Putro",
                 "email" => "dimasnugroho673@gmail.com",
                 "nim" => "170155201005",
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 'api_token' => "UZ9hYZtMrVndCkPxWVksOyox",
             ],
             [
-                "id" => "170155201031",
+                "userID" => "170155201031",
                 "name" => "M. Wahyu Irgan Agustino",
                 "email" => "wahyuirgan12@gmail.com",
                 "nim" => "170155201031",

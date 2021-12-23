@@ -16,15 +16,19 @@ class LectureSeeder extends Seeder
     {
         Lecture::insert([
             [
+                "lectureID" => "001",
                 "lectureName" => "Zul Kennedy PZN"
             ],
             [
+                "lectureID" => "002",
                 "lectureName" => "Ano P.L"
             ],
             [
+                "lectureID" => "003",
                 "lectureName" => "Sandika Galah"
             ],
             [
+                "lectureID" => "004",
                 "lectureName" => "M. Ikhsanudian"
             ]
         ]);

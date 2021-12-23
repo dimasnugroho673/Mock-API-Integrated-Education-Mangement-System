@@ -18,7 +18,7 @@ class CourseSessionSeeder extends Seeder
             [
                 "courseSessionID" => "018762394872346231",
                 "idCourse" => "8762394872346231",
-                "idLecture" => "3",
+                // "idLecture" => "3",
                 "idRoom" => "1102",
                 "courseSchedule" => "Senin 07.30-09.00 WIB",
                 "courseScheduleStart" => "40",
@@ -28,7 +28,7 @@ class CourseSessionSeeder extends Seeder
             [
                 "courseSessionID" => "028762394872346231",
                 "idCourse" => "8762394872346231",
-                "idLecture" => "4",
+                // "idLecture" => "4",
                 "idRoom" => "1102",
                 "courseSchedule" => "Senin 09.00-11.00 WIB",
                 "courseScheduleStart" => "41",
@@ -38,7 +38,7 @@ class CourseSessionSeeder extends Seeder
             [
                 "courseSessionID" => "018762394872346232",
                 "idCourse" => "8762394872346232",
-                "idLecture" => "1",
+                // "idLecture" => "1",
                 "idRoom" => "1101",
                 "courseSchedule" => "Jumat 07.30-09.00 WIB",
                 "courseScheduleStart" => "65",
@@ -48,7 +48,7 @@ class CourseSessionSeeder extends Seeder
             [
                 "courseSessionID" => "028762394872346232",
                 "idCourse" => "8762394872346232",
-                "idLecture" => "2",
+                // "idLecture" => "2",
                 "idRoom" => "1101",
                 "courseSchedule" => "Jumat 09.00-11.00 WIB",
                 "courseScheduleStart" => "68",

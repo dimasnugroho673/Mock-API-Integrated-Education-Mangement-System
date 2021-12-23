@@ -19,8 +19,28 @@ class Course extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    public function courseSessions()
+    public function session()
     {
-        return $this->HasMany(CourseSession::class);
+        return $this->hasOne(CourseSession::class, 'idCourse', 'courseID');
+    }
+
+    public function sessions()
+    {
+        return $this->HasMany(CourseSession::class, 'idCourse', 'courseID');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'idDepartment', 'id');
+    }
+
+    public function academicYear()
+    {
+        return $this->belongsTo(AcademicYear::class, 'idAcademicYear', 'academicYearID');
+    }
+
+    public function courseGradeComponents()
+    {
+        // return $this->hasMany();
     }
 }

@@ -15,4 +15,19 @@ class CourseSession extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    public function lectures()
+    {
+        return $this->hasMany(CourseLectureEnroll::class, 'idSession', 'courseSessionID');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(CourseUserEnroll::class, 'idSession', 'courseSessionID');
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'idRoom', 'roomID');
+    }
 }

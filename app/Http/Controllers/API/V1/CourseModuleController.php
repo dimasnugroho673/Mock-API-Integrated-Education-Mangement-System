@@ -10,7 +10,24 @@ class CourseModuleController extends Controller
 {
     public function getAll(Request $request)
     {
-        $modules = CourseModule::where(['idCourse' => request('courseID'), 'idSession' => request('sessionID')])->get();
+        // $isActive = request('isActive') == true ? 1 : 0;
+
+        $modules = CourseModule::where(['idCourse' => request('courseID'), 'idSession' => request('sessionID')]);
+
+        if (request('moduleType')) {
+            $modules = $modules->where('moduleType', request('moduleType'));
+        }
+        // if (request('isActive')) {
+        //     $modules = $modules->where('isActive', request('isActive'));
+        // }
+
+        $modules = $modules->get();
+
+        if (request('withContent') == 'true') {
+            $modules->map(function ($d) {
+                $this->_mapCourseModuleData($d, $d->moduleType);
+            });
+        }
 
         return response()->json([
             "status"    => "success",
@@ -61,7 +78,7 @@ class CourseModuleController extends Controller
                 unset($d->moduleQuiz->id);
 
                 $backupData = $d->moduleQuiz;
-                
+
                 $d->content = $backupData;
                 $backupDataQuiz = $d->content->data;
 
@@ -73,7 +90,7 @@ class CourseModuleController extends Controller
                 unset($d->content->data);
 
                 $d->content->data = json_encode($backupDataQuiz);
-                
+
                 return $d;
                 break;
 

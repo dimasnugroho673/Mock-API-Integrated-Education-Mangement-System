@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLecturesTable extends Migration
+class CreateLabToolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateLecturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lectures', function (Blueprint $table) {
-            $table->uuid('lectureID')->primary();
-            $table->string('lectureName');
+        Schema::create('lab_tools', function (Blueprint $table) {
+            $table->id();
+            $table->string('toolName');
+            $table->string('toolType');
+            $table->string('stocks');
+            $table->longText('descriptions')->nullable();
         });
     }
 
@@ -26,6 +29,6 @@ class CreateLecturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lectures');
+        Schema::dropIfExists('lab_tools');
     }
 }

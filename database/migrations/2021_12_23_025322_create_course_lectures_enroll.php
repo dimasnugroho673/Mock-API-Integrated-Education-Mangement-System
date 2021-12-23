@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourseUsersEnroll extends Migration
+class CreateCourseLecturesEnroll extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,13 @@ class CreateCourseUsersEnroll extends Migration
      */
     public function up()
     {
-        Schema::create('course_users_enroll', function (Blueprint $table) {
+        Schema::create('course_lectures_enroll', function (Blueprint $table) {
             $table->id();
-            $table->char('idUser', 36);
+            $table->char('idLecture', 36);
             $table->char('idCourse', 36);
             $table->char('idSession', 36);
-            $table->boolean('isComplete')->default(false);  
-            $table->string('coursePoints')->nullable();
-            $table->string('courseGrade', 1)->nullable();
-            $table->string('courseQuality')->nullable();
-            $table->float('courseFinalScore', 8, 2)->nullable();
+            $table->boolean('isPrimaryLecture');
+            $table->longText('lectureDescriptions')->nullable();
             $table->timestamp('createdAt', 0)->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updatedAt', 0)->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -36,6 +33,6 @@ class CreateCourseUsersEnroll extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_enroll_users');
+        Schema::dropIfExists('course_lectures_enroll');
     }
 }

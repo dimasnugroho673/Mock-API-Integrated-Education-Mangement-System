@@ -18,9 +18,14 @@ class CreateCoursesTable extends Migration
             $table->uuid('courseID')->primary();
             $table->string('courseCode');
             $table->string('courseTitle');
+            $table->string('courseScope');
             $table->string('courseType');
             $table->string('courseCredits');
+            $table->string("semester");
+            $table->string('semesterType');
             $table->string('idDepartment');
+            $table->string('idCourseGradeComponents')->nullable();
+            $table->string('idAcademicYear');
             $table->timestamp('createdAt', 0)->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updatedAt', 0)->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

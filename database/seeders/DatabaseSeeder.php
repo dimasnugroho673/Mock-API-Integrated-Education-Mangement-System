@@ -26,7 +26,13 @@ class DatabaseSeeder extends Seeder
             CourseModuleSeeder::class,
             ModuleAssignmentSeeder::class,
             ModuleQuizSeeder::class,
-            ModuleMaterialSeeder::class
+            ModuleMaterialSeeder::class,
+            LibBookSeeder::class,
+            LabToolSeeder::class,
+            LibBookLoanSeeder::class,
+            LabToolLoanSeeder::class,
+            AcademicYearSeeder::class,
+            CourseLectureEnrollSeeder::class
         ]);
     }
 }

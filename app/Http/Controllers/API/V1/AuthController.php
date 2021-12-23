@@ -50,4 +50,37 @@ class AuthController extends Controller
             "data"      => $userData
         ], 200);
     }
+
+    public function changePassword(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'oldpasswd'          => 'required|min:6',
+            'newpasswd'          => 'required|min:6',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'status' => "error",
+                "errors" => $validation->errors()
+            ], 422);
+        }
+
+        $getUserPassword = User::where('userID', $request->user()->userID)->first()->password;
+
+        if (!password_verify($request->oldpasswd, $getUserPassword)) {
+            return response()->json([
+                'status' => "error",
+                "message" => "Your old password doesn't match"
+            ], 422);
+		}
+
+        User::where('userID', $request->user()->userID)->update([
+            "password" => bcrypt($request->newpasswd)
+        ]);
+
+        return response()->json([
+            "status"    => "success",
+            "message"   => "Password has been changed"
+        ], 200); 
+    }
 }

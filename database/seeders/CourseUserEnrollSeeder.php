@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\CourseUserEnroll as ModelsCourseUserEnroll;
 use Illuminate\Database\Seeder;
+use App\Models\CourseUserEnroll;
 
-class CourseUserEnroll extends Seeder
+class CourseUserEnrollSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class CourseUserEnroll extends Seeder
      */
     public function run()
     {
-        ModelsCourseUserEnroll::insert([
+        CourseUserEnroll::insert([
             [
                 "idUser" => "170155201005",
                 "idCourse" => "8762394872346232",

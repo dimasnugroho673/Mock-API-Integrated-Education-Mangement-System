@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             CourseSessionSeeder::class,
             LectureSeeder::class,
-            CourseUserEnroll::class,
             CourseModuleSeeder::class,
             ModuleAssignmentSeeder::class,
             ModuleQuizSeeder::class,
@@ -32,7 +31,8 @@ class DatabaseSeeder extends Seeder
             LibBookLoanSeeder::class,
             LabToolLoanSeeder::class,
             AcademicYearSeeder::class,
-            CourseLectureEnrollSeeder::class
+            CourseLectureEnrollSeeder::class,
+            CourseUserEnrollSeeder::class
         ]);
     }
 }

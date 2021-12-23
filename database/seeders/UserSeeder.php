@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
                 "userID" => "170155201013",
                 "name" => "Sulthan SHP",
                 "email" => "sulthan.shp.13@gmail.com",
-                "nim" => "170155201031",
+                "nim" => "170155201013",
                 "password" => bcrypt("123456"),
                 'api_token' => "REbdazWfjgJeyrtIBlRTTQ",
             ],

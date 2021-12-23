@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\CourseModuleController;
 use App\Http\Controllers\API\V1\LoanController;
 use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
+    Route::get('/application/settings/data/recovery', function (Request $request) {
+        if (request('auth') == 'administrator') {
+            Artisan::call('migrate:fresh --seed');
+
+            return response()->json([
+                "status"    => "success",
+                "message"   => "Data has been reset to factory"
+            ], 200);
+        } else {
+            return response()->json([
+                "status"    => "error",
+                "message"   => "Unauthorized"
+            ], 401);
+        } 
+    });
 
     Route::get('/login', [AuthController::class, 'login']);
 
@@ -40,6 +56,5 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/loans/book', [LoanController::class, 'getLoansLibBook']);
         Route::get('/loans/tool', [LoanController::class, 'getLoansLabTool']);
-        
     });
 });

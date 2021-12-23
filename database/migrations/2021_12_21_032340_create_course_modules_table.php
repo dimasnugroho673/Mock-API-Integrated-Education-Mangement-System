@@ -15,7 +15,7 @@ class CreateCourseModulesTable extends Migration
     public function up()
     {
         Schema::create('course_modules', function (Blueprint $table) {
-            $table->uuid('moduleID')->primary()->unique();
+            $table->char('moduleID', 36)->primary()->unique();
             $table->char('idCourse', 36);
             $table->char('idSession', 36);
             $table->string('moduleTitle');

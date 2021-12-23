@@ -14,7 +14,7 @@ class CreateAcademicYearsTable extends Migration
     public function up()
     {
         Schema::create('academic_years', function (Blueprint $table) {
-            $table->uuid('academicYearID')->primary();
+            $table->char('academicYearID', 36)->primary();
             $table->string('year');
             $table->string('type');
             $table->longText('descriptions')->nullable();

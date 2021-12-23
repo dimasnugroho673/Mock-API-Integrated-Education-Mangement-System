@@ -14,7 +14,7 @@ class CreateLecturesTable extends Migration
     public function up()
     {
         Schema::create('lectures', function (Blueprint $table) {
-            $table->uuid('lectureID')->primary();
+            $table->char('lectureID', 36)->primary();
             $table->string('lectureName');
         });
     }

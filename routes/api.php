@@ -53,6 +53,9 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/modules', [CourseModuleController::class, 'getAll']);
         Route::get('/module/{moduleID}', [CourseModuleController::class, 'getDetail']);
+        Route::post('/module/{moduleID}', [CourseModuleController::class, 'submitAssignment']);
+        Route::delete('/module/{moduleID}', [CourseModuleController::class, 'deleteAssignment']);
+        
 
         Route::get('/loans/book', [LoanController::class, 'getLoansLibBook']);
         Route::get('/loans/tool', [LoanController::class, 'getLoansLabTool']);

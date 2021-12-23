@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
 use App\Models\CourseModule;
 use Illuminate\Http\Request;
+use App\Models\ModuleAssignment;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use App\Models\ModuleUserAssignmentCollection;
 
 class CourseModuleController extends Controller
 {
@@ -48,6 +52,61 @@ class CourseModuleController extends Controller
         return response()->json([
             "status"    => "success",
             "data"   => $module
+        ], 200);
+    }
+
+    public function submitAssignment(Request $request)
+    {
+        $getAssignmentData = ModuleAssignment::where('idModule', $request->moduleID)->first();
+
+        $validation = Validator::make($request->all(), [
+            'idCourse'        => 'required|numeric',
+            'idSession'          => 'required|numeric',
+            'attachment' => 'required|max:20000|mimes:' . implode(",", $getAssignmentData->extensions)
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'status' => "error",
+                "errors" => $validation->errors()
+            ], 422);
+        }
+
+        $fullPath = 'user/assignment/' . $request->file('attachment')->getClientOriginalName();
+
+        Storage::putFileAs(
+            'user/assignment', $request->file('attachment'),  $request->file('attachment')->getClientOriginalName()
+        );
+        
+        ModuleUserAssignmentCollection::create([
+            "idUser" => $request->user()->userID,
+            "idCourse" => $request->idCourse,
+            "idSession" => $request->idSession,
+            "idModule" => $request->moduleID,
+            "path" => $fullPath
+        ]);
+
+        // set score logic here =================
+
+        return response()->json([
+            "status"    => "success",
+            "message" => "Assignment has been uploaded, please wait for scoring from your lectures",
+            "meta"   => $request->file('attachment')->getClientOriginalName()
+        ], 201);
+    }
+
+    public function deleteAssignment(Request $request)
+    {
+        $getAssignmentData = ModuleUserAssignmentCollection::where(['idUser' => $request->user()->userID, 'idModule' => $request->moduleID])->first();
+        ModuleUserAssignmentCollection::where(['idUser' => $request->user()->userID, 'idModule' => $request->moduleID])->delete();
+
+        // set logic if score has been filled, cannot delete file ===================
+
+        Storage::delete($getAssignmentData->path);
+
+        return response()->json([
+            "status"    => "success",
+            "message" => "Assignment has been deleted",
         ], 200);
     }
 

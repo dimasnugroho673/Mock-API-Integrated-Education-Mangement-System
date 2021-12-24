@@ -13,5 +13,6 @@ class ModuleUserAssignmentCollection extends Model
     protected $table = "module_users_assignment_collections";
     protected $guarded = [];
 
-    
+    const CREATED_AT = 'createdAt';
+    const UPDATED_AT = 'updatedAt';
 }

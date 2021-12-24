@@ -53,8 +53,11 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/modules', [CourseModuleController::class, 'getAll']);
         Route::get('/module/{moduleID}', [CourseModuleController::class, 'getDetail']);
-        Route::post('/module/{moduleID}', [CourseModuleController::class, 'submitAssignment']);
-        Route::delete('/module/{moduleID}', [CourseModuleController::class, 'deleteAssignment']);
+
+        Route::post('/module/{moduleID}/assignment', [CourseModuleController::class, 'submitAssignment']);
+        Route::delete('/module/{moduleID}/assignment', [CourseModuleController::class, 'deleteAssignment']);
+
+        Route::post('/module/{moduleID}/quiz', [CourseModuleController::class, 'submitQuiz']);
         
 
         Route::get('/loans/book', [LoanController::class, 'getLoansLibBook']);

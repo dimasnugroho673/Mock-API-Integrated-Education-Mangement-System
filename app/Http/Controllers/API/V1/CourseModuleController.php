@@ -6,6 +6,7 @@ use App\Models\CourseModule;
 use Illuminate\Http\Request;
 use App\Models\ModuleAssignment;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleQuiz;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ModuleUserAssignmentCollection;
@@ -52,6 +53,30 @@ class CourseModuleController extends Controller
         return response()->json([
             "status"    => "success",
             "data"   => $module
+        ], 200);
+    }
+
+    public function submitQuiz(Request $request)
+    {
+        $totalTrueAnswers = 0;
+        $getQuizData = ModuleQuiz::where('idModule', $request->moduleID)->first();
+
+        foreach ($request->answers as $a) {
+            if ($this->_searchAnswerKeyByNumber($a, $getQuizData->data)) {
+                $totalTrueAnswers += 1;
+            } else {
+                if ($totalTrueAnswers >= 1) {
+                    $totalTrueAnswers -= 1;
+                } else {
+                    $totalTrueAnswers = 0;
+                }      
+            }
+        }
+        
+        return response()->json([
+            "status"    => "success",
+            "dataFromDB"   => $getQuizData->data,
+            "totalTrueAnswers" => $totalTrueAnswers
         ], 200);
     }
 
@@ -108,6 +133,19 @@ class CourseModuleController extends Controller
             "status"    => "success",
             "message" => "Assignment has been deleted",
         ], 200);
+    }
+
+    private function _searchAnswerKeyByNumber($answerDataFromUser, $answerDataFromDB)
+    {
+        foreach ($answerDataFromDB as $a) {
+            if ($answerDataFromUser['number'] == $a->number) {
+                if ($answerDataFromUser['choice'] == $a->answerKey) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
     }
 
     private function _mapCourseModuleData($d, $moduleType)

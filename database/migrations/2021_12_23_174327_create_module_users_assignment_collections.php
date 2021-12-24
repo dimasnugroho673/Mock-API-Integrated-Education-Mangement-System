@@ -20,7 +20,8 @@ class CreateModuleUsersAssignmentCollections extends Migration
             $table->char('idSession', 36);
             $table->char('idModule', 36);
             $table->string('path');
-            $table->timestamps();
+            $table->timestamp('createdAt', 0)->nullable()->useCurrent();
+            $table->timestamp('updatedAt', 0)->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

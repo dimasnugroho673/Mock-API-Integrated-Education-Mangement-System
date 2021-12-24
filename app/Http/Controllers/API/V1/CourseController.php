@@ -16,16 +16,14 @@ class CourseController extends Controller
             ->where('course_users_enroll.idUser', $request->user()->userID)
             ->get();
 
-        // $courses->map(function ($d) {
-        //     $this->_mapCourseData($d);
-
-        //     return $d;
-        // });
-
         $courses->map(function ($d) {
             $d->session;
             $d->session->room;
             $d->session->lectures;
+            $d->session->lectures = $d->session->lectures->map(function($l)
+            {
+                $l->lecture;
+            });
             $d->academicYear;
 
             return $d;
@@ -42,7 +40,6 @@ class CourseController extends Controller
         $courses = Course::all();
 
         $courses->map(function($d) {
-            // $this->_mapCourseData($d);
             $d->sessions = $d->sessions->map(function($s)
             {
                 $s->lectures->map(function($l)

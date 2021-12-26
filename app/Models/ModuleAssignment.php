@@ -19,4 +19,9 @@ class ModuleAssignment extends Model
 
         return json_decode(stripslashes($txt));
     }
+
+    public function submittedAssignment()
+    {
+        return $this->hasOne(ModuleUserAssignmentCollection::class, 'idModule', 'idModule');
+    }
 }

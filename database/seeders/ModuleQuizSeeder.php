@@ -17,8 +17,8 @@ class ModuleQuizSeeder extends Seeder
         ModuleQuiz::insert([
             [
                 "idModule" => "098123907124",
-                "assignedDate" => "2021-12-20 07:30:00",
-                "deadlineDate" => "2021-12-20 23:59:00",
+                "assignedDate" => "2021-12-26 07:30:00",
+                "deadlineDate" => "2021-12-26 23:59:00",
                 "durationLimit" => 1200000,
                 "data" => '[
                     {

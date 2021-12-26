@@ -42,4 +42,9 @@ class CourseModule extends Model
     {
         return $this->hasOne(ModuleExam::class, 'idModule', 'moduleID');
     }
+
+    public function score()
+    {
+        return $this->hasOne(ModuleUserScore::class, 'idModule', 'moduleID');
+    }
 }

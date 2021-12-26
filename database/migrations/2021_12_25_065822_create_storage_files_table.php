@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModuleUsersAssignmentCollections extends Migration
+class CreateStorageFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateModuleUsersAssignmentCollections extends Migration
      */
     public function up()
     {
-        Schema::create('module_users_assignment_collections', function (Blueprint $table) {
-            $table->id();
-            $table->char('idUser', 36);
-            $table->char('idCourse', 36);
-            $table->char('idSession', 36);
-            $table->char('idModule', 36);
-            // $table->string('path');
-            $table->char('idFile', 36);
+        Schema::create('storage_files', function (Blueprint $table) {
+            $table->char('fileID', 36)->primary()->unique();
+            $table->string('fileName');
+            $table->string('mimes');
+            $table->string('size')->nullable();
+            $table->string('extension')->nullable();
+            $table->string('path');
             $table->timestamp('createdAt', 0)->nullable()->useCurrent();
             $table->timestamp('updatedAt', 0)->nullable()->useCurrent()->useCurrentOnUpdate();
         });
@@ -33,6 +32,6 @@ class CreateModuleUsersAssignmentCollections extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('module_users_assignment_collections');
+        Schema::dropIfExists('storage_files');
     }
 }

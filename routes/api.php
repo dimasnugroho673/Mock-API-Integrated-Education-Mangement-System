@@ -4,6 +4,7 @@ use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\CourseController;
 use App\Http\Controllers\API\V1\CourseModuleController;
 use App\Http\Controllers\API\V1\LoanController;
+use App\Http\Controllers\API\V1\StorageController;
 use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -62,5 +63,5 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/loans/book', [LoanController::class, 'getLoansLibBook']);
         Route::get('/loans/tool', [LoanController::class, 'getLoansLabTool']);
-    });
+    });   
 });

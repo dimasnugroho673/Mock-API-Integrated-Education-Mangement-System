@@ -60,6 +60,27 @@ class CourseController extends Controller
         ], 200);
     }
 
+    public function getDetail(Request $request)
+    {
+        $course = Course::where('courseID', $request->courseID)->first();
+        $backUpDataAcademic = $course->academicYear;
+        unset($course->academicYear);
+
+        $course->session;
+        $course->session->room;
+        $course->session->lectures->map(function($lecture)
+        {
+            $lecture->lecture;
+        });
+        $course->department;
+        $course->academicYear = $backUpDataAcademic;
+
+        return response()->json([
+            "status"    => "success",
+            "data"   => $course
+        ], 200);
+    }
+
     public function createStudyPlan(Request $request)
     {
         foreach ($request->courses as $d) {

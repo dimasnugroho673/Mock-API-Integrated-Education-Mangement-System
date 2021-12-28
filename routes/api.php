@@ -51,6 +51,7 @@ Route::prefix('v1')->group(function () {
         Route::put('/user/password', [AuthController::class, 'changePassword']);
 
         Route::get('/courses', [CourseController::class, 'getAll']);
+        Route::get('/course/{courseID}', [CourseController::class, 'getDetail']);
 
         Route::get('/modules', [CourseModuleController::class, 'getAll']);
         Route::get('/module/{moduleID}', [CourseModuleController::class, 'getDetail']);

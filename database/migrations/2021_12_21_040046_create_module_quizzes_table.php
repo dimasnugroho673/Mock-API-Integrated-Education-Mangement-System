@@ -20,6 +20,7 @@ class CreateModuleQuizzesTable extends Migration
             $table->dateTime('deadlineDate');
             $table->string('durationLimit');
             $table->json('data');
+            $table->longText('addionalInfo')->nullable();
         });
     }
 

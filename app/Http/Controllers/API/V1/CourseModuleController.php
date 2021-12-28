@@ -19,7 +19,7 @@ class CourseModuleController extends Controller
 
         $modules = CourseModule::where(['idCourse' => request('courseID'), 'idSession' => request('sessionID')]);
 
-        if (request('moduleType')) {
+        if (request('moduleType') && request('moduleType') != 'all') {
             $modules = $modules->where('moduleType', request('moduleType'));
         }
         // if (request('isActive')) {

@@ -108,7 +108,7 @@ class CourseModuleController extends Controller
             "idCourse" => $request->idCourse,
             "idSession" => $request->idSession,
             "idModule" => $request->moduleID,
-            "path" => $fullPath
+            // "path" => $fullPath
         ]);
 
         // set score logic here =================

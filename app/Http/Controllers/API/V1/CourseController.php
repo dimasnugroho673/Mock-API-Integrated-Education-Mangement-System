@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\CourseModule;
 use App\Models\CourseUserEnroll;
 use Illuminate\Http\Request;
 
@@ -74,6 +75,12 @@ class CourseController extends Controller
         });
         $course->department;
         $course->academicYear = $backUpDataAcademic;
+        $course->session->dataCounter = [
+            "material" => count(CourseModule::where('moduleType', 'material')->get()),
+            "assignment" => count(CourseModule::where('moduleType', 'assignment')->get()),
+            "quiz" => count(CourseModule::where('moduleType', 'quiz')->get()),
+            "exam" => count(CourseModule::where('moduleType', 'exam')->get())
+        ];
 
         return response()->json([
             "status"    => "success",

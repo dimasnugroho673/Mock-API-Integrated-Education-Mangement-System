@@ -176,10 +176,12 @@ class CourseModuleController extends Controller
 
             case 'assignment':
                 $backupDataAssignment = $d->moduleAssignment;
+                $backupSubmitted = $d->moduleAssignment->submittedAssignment;
 
                 unset($d->moduleAssignment);
 
                 $d->content = $backupDataAssignment;
+                $d->content->submitAssignment = $backupSubmitted->file;
 
                 return $d;
                 break;

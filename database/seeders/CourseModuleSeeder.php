@@ -29,7 +29,7 @@ class CourseModuleSeeder extends Seeder
                 "idSession" => "018762394872346232",
                 "moduleTitle" => "Pengenalan Web",
                 "moduleType" => "material",
-                "isActive" => false
+                "isActive" => true
             ],
             [
                 "moduleID" => "098123907123",
@@ -45,7 +45,7 @@ class CourseModuleSeeder extends Seeder
                 "idSession" => "018762394872346232",
                 "moduleTitle" => "Kuis 1",
                 "moduleType" => "quiz",
-                "isActive" => true
+                "isActive" => false
             ],
         ]);
     }

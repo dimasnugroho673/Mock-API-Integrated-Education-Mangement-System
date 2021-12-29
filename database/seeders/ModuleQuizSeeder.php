@@ -18,7 +18,7 @@ class ModuleQuizSeeder extends Seeder
             [
                 "idModule" => "098123907124",
                 "assignedDate" => "2021-12-26 07:30:00",
-                "deadlineDate" => "2021-12-26 23:59:00",
+                "deadlineDate" => "2021-12-29 23:59:00",
                 "durationLimit" => 1200000,
                 "data" => '[
                     {

@@ -234,6 +234,8 @@ class CourseModuleController extends Controller
                     $d->content->submittedAssignment->file = $backupSubmitted->file;
                 }
 
+                $d->score = $d->score;
+
                 return $d;
                 break;
 
@@ -253,6 +255,7 @@ class CourseModuleController extends Controller
                 unset($d->content->data);
 
                 $d->content->data = json_encode($backupDataQuiz);
+                $d->score = $d->score;
 
                 return $d;
                 break;

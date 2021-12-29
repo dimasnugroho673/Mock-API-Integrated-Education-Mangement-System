@@ -182,7 +182,9 @@ class CourseModuleController extends Controller
 
                 $d->content = $backupDataAssignment;
                 $d->content->submittedAssignment = $backupSubmitted;
-                $d->content->submittedAssignment->file = $backupSubmitted->file;
+                if ($d->content->submittedAssignment) {
+                    $d->content->submittedAssignment->file = $backupSubmitted->file;
+                }
 
                 return $d;
                 break;

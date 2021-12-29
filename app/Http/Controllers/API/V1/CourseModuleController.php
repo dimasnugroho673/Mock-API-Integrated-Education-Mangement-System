@@ -181,7 +181,8 @@ class CourseModuleController extends Controller
                 unset($d->moduleAssignment);
 
                 $d->content = $backupDataAssignment;
-                $d->content->submitAssignment = $backupSubmitted->file;
+                $d->content->submittedAssignment = $backupSubmitted;
+                $d->content->submittedAssignment->file = $backupSubmitted->file;
 
                 return $d;
                 break;

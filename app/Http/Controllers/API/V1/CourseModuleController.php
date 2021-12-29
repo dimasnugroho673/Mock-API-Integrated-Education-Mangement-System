@@ -10,6 +10,7 @@ use App\Models\ModuleQuiz;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ModuleUserAssignmentCollection;
+use App\Models\StorageFile;
 
 class CourseModuleController extends Controller
 {
@@ -99,6 +100,14 @@ class CourseModuleController extends Controller
 
         $fullPath = 'user/assignment/' . $request->file('attachment')->getClientOriginalName();
 
+        $createOnStorageFile = StorageFile::create([
+            'fileName' => $request->file('attachment')->getClientOriginalName(),
+            'mimes' => $request->file('attachment')->getMimeType(),
+            'size' => $request->file('attachment')->getSize(),
+            'extension' => $request->file('attachment')->getClientOriginalExtension(),
+            'path' => $fullPath
+        ]);
+
         Storage::putFileAs(
             'user/assignment', $request->file('attachment'),  $request->file('attachment')->getClientOriginalName()
         );
@@ -108,6 +117,7 @@ class CourseModuleController extends Controller
             "idCourse" => $request->idCourse,
             "idSession" => $request->idSession,
             "idModule" => $request->moduleID,
+            "idFile" => $createOnStorageFile->fileID
             // "path" => $fullPath
         ]);
 
@@ -123,11 +133,14 @@ class CourseModuleController extends Controller
     public function deleteAssignment(Request $request)
     {
         $getAssignmentData = ModuleUserAssignmentCollection::where(['idUser' => $request->user()->userID, 'idModule' => $request->moduleID])->first();
+        $getFilePath = StorageFile::where('fileID', $getAssignmentData->idFile)->first();
         ModuleUserAssignmentCollection::where(['idUser' => $request->user()->userID, 'idModule' => $request->moduleID])->delete();
 
         // set logic if score has been filled, cannot delete file ===================
 
-        Storage::delete($getAssignmentData->path);
+        StorageFile::where('fileID', $getAssignmentData->idFile)->delete();
+
+        Storage::delete($getFilePath->path);
 
         return response()->json([
             "status"    => "success",

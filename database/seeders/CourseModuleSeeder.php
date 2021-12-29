@@ -45,7 +45,7 @@ class CourseModuleSeeder extends Seeder
                 "idSession" => "018762394872346232",
                 "moduleTitle" => "Kuis 1",
                 "moduleType" => "quiz",
-                "isActive" => false
+                "isActive" => true
             ],
         ]);
     }

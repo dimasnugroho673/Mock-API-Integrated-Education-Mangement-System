@@ -10,6 +10,7 @@ use App\Models\ModuleQuiz;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ModuleUserAssignmentCollection;
+use App\Models\ModuleUserScore;
 use App\Models\StorageFile;
 
 class CourseModuleController extends Controller
@@ -122,11 +123,24 @@ class CourseModuleController extends Controller
         ]);
 
         // set score logic here =================
+        ModuleUserScore::create([
+            "idUser" => $request->user()->userID,
+            "idCourse" => $request->idCourse,
+            "idSession" => $request->idSession,
+            "idModule" => $request->moduleID,
+            "moduleScore" => 100,
+            "moduleGrade" => transformScoreToGrade(100)
+        ]);
 
         return response()->json([
             "status"    => "success",
             "message" => "Assignment has been uploaded, please wait for scoring from your lectures",
-            "meta"   => $request->file('attachment')->getClientOriginalName()
+            "meta"   => [
+                "score" => [
+                    "moduleScore" => 100,
+                    "moduleGrade" => transformScoreToGrade(100)
+                ]
+            ]
         ], 201);
     }
 

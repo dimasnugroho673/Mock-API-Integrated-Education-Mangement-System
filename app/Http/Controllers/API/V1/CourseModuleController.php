@@ -71,14 +71,46 @@ class CourseModuleController extends Controller
                     $totalTrueAnswers -= 1;
                 } else {
                     $totalTrueAnswers = 0;
-                }      
+                }
             }
         }
-        
+
+        $totalQuestion = count($getQuizData->data);
+        $totalAnswers = count($request->answers);
+        $totalCorrectAnswers = $totalTrueAnswers;
+        $totalWrongAnswers = $totalQuestion - $totalTrueAnswers;
+        $score = round((($totalCorrectAnswers / $totalQuestion) * 100));
+        $grade = transformScoreToGrade($score);
+        $percentage = round((($totalCorrectAnswers / $totalQuestion) * 100)) . "%";
+
+        $additionalInfo = [
+            "totalQuestions" => $totalQuestion,
+            "totalAnswers" => $totalAnswers,
+            "totalCorrectAnswers" => $totalTrueAnswers,
+            "totalWrongAnswers" => $totalWrongAnswers,
+            "percentage" => $percentage,
+            "score" => [
+                "score" => $score,
+                "grade" => $grade,
+            ]
+        ];
+
+        // // set score logic here =================
+        ModuleUserScore::create([
+            "idUser" => $request->user()->userID,
+            "idCourse" => $request->idCourse,
+            "idSession" => $request->idSession,
+            "idModule" => $request->moduleID,
+            "moduleScore" => $score,
+            "moduleGrade" => $grade,
+            "additionalInfo" => json_encode($additionalInfo)
+        ]);
+
         return response()->json([
             "status"    => "success",
-            "dataFromDB"   => $getQuizData->data,
-            "totalTrueAnswers" => $totalTrueAnswers
+            "message"   => "Quiz has been recorded",
+            "questions" => $getQuizData->data,
+            "meta" => $additionalInfo
         ], 200);
     }
 
@@ -110,9 +142,11 @@ class CourseModuleController extends Controller
         ]);
 
         Storage::putFileAs(
-            'user/assignment', $request->file('attachment'),  $request->file('attachment')->getClientOriginalName()
+            'user/assignment',
+            $request->file('attachment'),
+            $request->file('attachment')->getClientOriginalName()
         );
-        
+
         ModuleUserAssignmentCollection::create([
             "idUser" => $request->user()->userID,
             "idCourse" => $request->idCourse,

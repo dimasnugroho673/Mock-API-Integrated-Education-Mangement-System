@@ -57,5 +57,9 @@ class CourseSessionSeeder extends Seeder
             ]
 
         ]);
+
+        // CourseSession::insert([
+
+        // ]);
     }
 }

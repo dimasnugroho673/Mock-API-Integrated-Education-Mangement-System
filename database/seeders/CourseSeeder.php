@@ -50,5 +50,44 @@ class CourseSeeder extends Seeder
                 "idAcademicYear" => "1238"
             ],
         ]);
+
+        // Course::insert([
+        //     [
+        //         "courseID" => "8762394872346231",
+        //         "courseCode" => "INF31001",
+        //         "courseTitle" => "Basis Data",
+        //         "courseCredits" => "3",
+        //         "courseType" => "mandatory",
+        //         "courseScope" => "study program",
+        //         "semester" => "5",
+        //         "semesterType" => "odd",
+        //         "idDepartment" => "1",
+        //         "idAcademicYear" => "1238"
+        //     ],
+        //     [
+        //         "courseID" => "8762394872346232",
+        //         "courseCode" => "INF31002",
+        //         "courseTitle" => "Pemrograman Web",
+        //         "courseCredits" => "4",
+        //         "courseType" => "mandatory",
+        //         "courseScope" => "study program",
+        //         "semester" => "4",
+        //         "semesterType" => "even",
+        //         "idDepartment" => "1",
+        //         "idAcademicYear" => "1238"
+        //     ],
+        //     [
+        //         "courseID" => "8762394872346233",
+        //         "courseCode" => "INF31003",
+        //         "courseTitle" => "Matematika Diskrit",
+        //         "courseCredits" => "3",
+        //         "courseType" => "mandatory",
+        //         "courseScope" => "study program",
+        //         "semester" => "2",
+        //         "semesterType" => "odd",
+        //         "idDepartment" => "1",
+        //         "idAcademicYear" => "1238"
+        //     ],
+        // ]);
     }
 }

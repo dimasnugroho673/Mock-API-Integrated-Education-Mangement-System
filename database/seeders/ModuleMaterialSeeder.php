@@ -35,9 +35,20 @@ class ModuleMaterialSeeder extends Seeder
             ],
             [
                 "idModule" => "098123907122",
-                "data" => '<div class="anyipsum-output" style="text-align: justify;">
-                <h1>Pengenalan Web</h1>
-                </div>'
+                "data" => '<h3>Pengenalan WEB &amp; HTML</h3>
+
+                <p><strong>WWW (World Wide Web)</strong>&nbsp;mempunyai definisi sebagai salah satu fasilitas dimana kita dapat saling bertukar informasi di Internet. Banyak orang berpendapat bahwa&nbsp;WWW&nbsp;adalah dunianya sedangkan Internet adalah jaringannya. Protocol standard aturan yang digunakan untuk berkomunikasi pada komputer networking,&nbsp;HyperText Transfer Protocol (HTTP)&nbsp;adalah protokol untuk&nbsp;WWW.&nbsp;WWW&nbsp;bekerja berdasarkan pada tiga mekanisme berikut:</p>
+                
+                <ul>
+                    <li><strong><em>Protocol</em></strong>, standard aturan yang digunakan untuk berkomunkasi pada computer networking,&nbsp;HyperText Transfer Protocol (HTTP)&nbsp;adalah protokol untuk&nbsp;WWW.</li>
+                    <li><strong><em>Address</em></strong>,&nbsp;WWW&nbsp;memiliki aturan penamaan alamat web yaitu&nbsp;URL (Uniform Resource Locator)&nbsp;yang digunakan sebagai standar alamat Internet.</li>
+                    <li><strong><em>HTML</em></strong>, digunakan untuk membuat cocument yang bisa di akses melalui web.</li>
+                </ul>
+                
+                <h3>Perangkat Yang Digunakan</h3>
+                
+                <p>Untuk perangkat yang digunakan meliputi perangkat keras (hardware) dan perangkat lunak (software) untuk membuka WWW.</p>
+                '
             ]
         ]);
     }
